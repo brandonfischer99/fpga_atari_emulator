@@ -143,7 +143,13 @@ module alu(
                 NegativeFlag_reg = result[7];
             end
             
-            default: result = result;
+            default: 
+            begin
+                result = result;
+                CarryOut_reg = 0;
+                Overflow_reg = 0;
+                NegativeFlag_reg = 0;
+            end
         endcase
     end
     
