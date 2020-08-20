@@ -43,7 +43,8 @@ alu test_unit(
 task checkAdd;
     input [7:0] testA;
     input [7:0] testB;
-    static reg [9:0] tmp = {1'b0,testA} + {1'b0,testB};
+    input testCin;
+    static reg [9:0] tmp = {1'b0,testA} + {1'b0,testB} + {8'b0,testCin};
     
     static bit [7:0] OPS [0:7] = {8'h69, 8'h65, 8'h75, 8'h6d, 8'h7d, 8'h79, 8'h61, 8'h71};
     begin
@@ -54,8 +55,9 @@ task checkAdd;
             OP = OPS[i];
             A = testA;
             B = testB;
+            CarryIn = testCin;
             #5
-            assert( out == (testA + testB)) else $fatal(1, "Bad add\n");
+            assert( out == (testA + testB + testCin)) else $fatal(1, "Bad add\n");
             assert( CarryOut == tmp[8]) else $fatal(1, "Bad Carryout\n");
             assert( ZeroFlag == (tmp[7:0] == 8'h00)) else $fatal(1, "Bad Zero flag\n");
             assert( Overflow == (CarryOut ^ tmp[7])) else $fatal(1, "Bad Overflow Flag\n");
@@ -205,15 +207,150 @@ task checkXOR;
     
 endtask
 
+task checkIncrement;
+    input [7:0] testA;
+    
+    static bit [7:0] OPS [0:5] = {8'he6, 8'hf6, 8'hee, 8'hfe, 8'he8, 8'hc8};
+    
+    begin
+        $display("Testing Increment\n");
+        for(integer i = 0; i < 6; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            #5
+            assert( out == (testA + 8'h01)) else $fatal(1, "Bad Increment\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( NegativeFlag == out[7]) else $fatal(1, "Bad Negative Flag\n");
+        end
+    end
+    
+endtask
+
+task checkRightShift;
+    input [7:0] testA;
+    
+    static bit [7:0] OPS [0:4] = {8'h4a, 8'h46, 8'h56, 8'h4e, 8'h5e};
+    
+    begin
+        $display("Testing Right Shift\n");
+        for(integer i = 0; i < 5; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            #5
+            assert( out == testA >> 1) else $fatal(1, "Bad Right Shift\n");
+            assert( NegativeFlag == 0) else $fatal(1, "Bad Negative Flag\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( CarryOut == testA[0]) else $fatal(1, "Bad Carryout\n");
+        end
+    end
+endtask
+
+task checkOR;
+    input [7:0] testA;
+    input [7:0] testB;
+    
+    static bit [7:0] OPS [0:7] = {8'h08, 8'h05, 8'h15, 8'h0d, 8'h1d, 8'h19, 8'h01, 8'h11};
+    
+    begin
+        $display("Testing OR\n");
+        for(integer i = 0; i < 8; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            B = testB;
+            #5
+            assert( out == (testA | testB)) else $fatal(1, "Bad OR\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( NegativeFlag == out[7]) else $fatal(1, "Bad Negative Flag\n");
+        end
+    end
+endtask
+
+task checkRotateLeft;
+    input [7:0] testA;
+    
+    static bit [7:0] OPS [0:4] = {8'h2a, 8'h26, 8'h36, 8'h2e, 8'h3e};
+    
+    begin
+        $display("Testing Rotate Left\n");
+        for(integer i = 0; i < 5; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            #5
+            assert( out == ({testA[6:0],testA[7]})) else $fatal(1, "Bad Rotate Left\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( CarryOut == testA[7]) else $fatal(1, "Bad CarryOut Flag\n");
+        end
+    end
+    
+endtask
+
+task checkRotateRight;
+    input [7:0] testA;
+    
+    static bit [7:0] OPS [0:4] = {8'h6a, 8'h66, 8'h76, 8'h6e, 8'h7e};
+    
+    begin
+        $display("Testing Rotate Right\n");
+        for(integer i = 0; i < 5; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            #5
+            assert( out == ({testA[0],testA[7:1]})) else $fatal(1, "Bad Rotate Right\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( CarryOut == testA[0]) else $fatal(1, "Bad CarryOut Flag\n");
+        end
+    end
+    
+endtask
+
+task checkSubtract;
+    input [7:0] testA;
+    input [7:0] testB;
+    input testCin;
+    static reg [8:0] tmp = {1'b0,testA} - {1'b0,testB} - {8'b0,~testCin};
+    static integer test = int'(tmp[7:0]);
+    
+    static bit [7:0] OPS [0:7] = {8'he9, 8'he5, 8'hf5, 8'hed, 8'hfd, 8'hf9, 8'he1, 8'hf1};
+    begin
+        $display("Testing Subtract with Borrow\n");
+        for(integer i = 0; i < 8; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            B = testB;
+            CarryIn = testCin;
+            #5
+            assert( out == tmp[7:0]) else $fatal(1, "Bad subtract\n");
+            assert( CarryOut == (tmp[7:0] >= 8'h00)) else $fatal(1, "Bad Carryout\n");
+            assert( ZeroFlag == (tmp[7:0] == 8'h00)) else $fatal(1, "Bad Zero flag\n");
+            assert( Overflow == ((test - 127 > 0) || (test + 127 < 0))) else $fatal(1, "Bad Overflow Flag\n");
+            assert( NegativeFlag == tmp[7]) else $fatal(1, "Bad Negative Flag\n");
+        end
+    end
+endtask
+
 initial begin
     //task calls to check add with carry
-    checkAdd(8'h1,8'h1);
+    checkAdd(8'h1,8'h1, 1'b1);
     
-    checkAdd(8'h0, 8'h0);
+    checkAdd(8'h0, 8'h0, 1'b0);
     
-    checkAdd(8'hff,8'hff);
+    checkAdd(8'hff,8'hff, 1'b1);
     
-    checkAdd(8'h80, 8'h80);
+    checkAdd(8'h80, 8'h80, 1'b0);
+    
+    checkAdd(8'h80, 8'h80, 1'b1);
     
     //task calls to check Bitwise AND, not including test bits operation (A & M)
     checkAnd(8'h00, 8'h00);
@@ -249,7 +386,54 @@ initial begin
     //task calls to check XOR
     checkXOR(8'hAA, 8'h55);
     
-    checkXOR(8'hAA, 8'hAA);
+    checkXOR(8'hAA, 8'haa);
+    
+    //task calls to check increment
+    checkIncrement(8'hff);
+    
+    checkIncrement(8'hfd);
+    
+    checkIncrement(8'h05);
+    
+    //task calls to check logical right shift
+    checkRightShift(8'hff);
+    
+    checkRightShift(8'h01);
+    
+    checkRightShift(8'h02);
+    
+    //task calls to check OR
+    checkOR(8'hff, 8'h00);
+    
+    checkOR(8'h00, 8'h00);
+    
+    checkOR(8'h01, 8'h01);
+    
+    //task calls to check rotate left 1 bit
+    checkRotateLeft(8'hfe);
+    
+    checkRotateLeft(8'h01);
+    
+    checkRotateLeft(8'h7f);
+    
+    //task calls to check rotate right 1 bit
+    checkRotateRight(8'hfe);
+    
+    checkRotateRight(8'h01);
+    
+    checkRotateRight(8'h7f);
+    
+    //task calls to check subtraction with borrow
+    checkSubtract(8'h1, 8'h1, 1'b0);
+    
+    checkSubtract(8'h1, 8'h1, 1'b1);
+    
+    checkSubtract(8'h08, 8'h09, 1'b1);
+    
+    checkSubtract(8'h08, 8'h09, 1'b0);
+    
+    checkSubtract(8'hf0, 8'hf0, 1'b1);
+    
     
     $display("@@@Passed\n");
     $finish;

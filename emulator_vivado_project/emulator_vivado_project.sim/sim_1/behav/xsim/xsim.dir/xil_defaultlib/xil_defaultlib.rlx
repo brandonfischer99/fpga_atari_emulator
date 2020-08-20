@@ -3,5 +3,5 @@
 May 27 2020
 19:59:15
 /home/brandon/fpga_atari_emulator/emulator_vivado_project/emulator_vivado_project.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
-/home/brandon/fpga_atari_emulator/emulator_vivado_project/emulator_vivado_project.srcs/sim_1/new/alu_tb.v,1597939795,systemVerilog,,,,alu_tb,,,,,,,,
-/home/brandon/fpga_atari_emulator/emulator_vivado_project/emulator_vivado_project.srcs/sources_1/new/alu.v,1597355769,verilog,,,,alu,,,,,,,,
+/home/brandon/fpga_atari_emulator/emulator_vivado_project/emulator_vivado_project.srcs/sim_1/new/alu_tb.v,1597948059,systemVerilog,,,,alu_tb,,,,,,,,
+/home/brandon/fpga_atari_emulator/emulator_vivado_project/emulator_vivado_project.srcs/sources_1/new/alu.v,1597947222,verilog,,,,alu,,,,,,,,

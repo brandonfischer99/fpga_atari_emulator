@@ -39,9 +39,10 @@ module alu(
     reg NegativeFlag_reg;
     wire overflowAdd = ~A[7] & ~B[7] & result[7] | A[7] & B[7] & ~result[7];
     wire overflowSubtract = ~A[7] & B[7] & result[7] | A[7] & ~B[7] & ~result[7];
+    //wire overflowSubtract = (~A[7] & ~B[7]) | (~A[7] & B[7] & ~result[7]) | (A[7] & ~B[7] & result[7]) | (A[7] & B[7]);
     
     assign out = result;
-    assign tmp = {1'b0,A} + {1'b0,B};
+    assign tmp = {1'b0,A} + {1'b0,B} + {8'b0,CarryIn};
     assign CarryOut = CarryOut_reg;
     assign ZeroFlag = (result==8'd0)?1'd1:1'd0;
     assign Overflow = Overflow_reg;
@@ -55,7 +56,7 @@ module alu(
             //Adding with Carry
             8'h69, 8'h65, 8'h75, 8'h6d, 8'h7d, 8'h79, 8'h61, 8'h71:
             begin
-                result = A + B;
+                result = A + B + CarryIn;
                 Overflow_reg = overflowAdd;
                 NegativeFlag_reg = result[7];
                 CarryOut_reg = tmp[8];
@@ -134,10 +135,10 @@ module alu(
                 CarryOut_reg = A[0];
                 NegativeFlag_reg = result[7];
             end
-            //Subtract memory from accumulator with
+            //Subtract memory from accumulator with borrow
             8'he9, 8'he5, 8'hf5, 8'hed, 8'hfd, 8'hf9, 8'he1, 8'hf1:
             begin
-                result = A - B - (~CarryIn);
+                result = A - B - {7'b0,~CarryIn};
                 CarryOut_reg = (result>=8'd0)?1'd1:1'd0;
                 Overflow_reg = overflowSubtract;
                 NegativeFlag_reg = result[7];

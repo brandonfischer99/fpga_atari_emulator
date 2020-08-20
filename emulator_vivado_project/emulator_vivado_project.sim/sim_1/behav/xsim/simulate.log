@@ -1,0 +1,574 @@
+Vivado Simulator 2020.1
+Time resolution is 1 ps
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing ALS
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing ALS
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Test Bits
+
+i =           0
+i =           1
+i =           2
+Testing Test Bits
+
+i =           0
+i =           1
+i =           2
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing XOR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing XOR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing OR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing OR
+
+i =           0
+i =           1
+i =           2
+i =           3
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Add
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing AND
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing ALS
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing ALS
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Test Bits
+
+i =           0
+i =           1
+i =           2
+Testing Test Bits
+
+i =           0
+i =           1
+i =           2
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Compare
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+i =           8
+i =           9
+i =          10
+i =          11
+i =          12
+i =          13
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Decrement
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing XOR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing XOR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Increment
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Right Shift
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing OR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing OR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing OR
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+i =           5
+i =           6
+i =           7
+Testing Rotate Left
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Rotate Left
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Rotate Left
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Rotate Right
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Rotate Right
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Rotate Right
+
+i =           0
+i =           1
+i =           2
+i =           3
+i =           4
+Testing Subtract with Borrow
+
