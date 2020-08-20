@@ -120,7 +120,7 @@ task checkBitsOp;
     static bit [7:0] OPS [0:2] = {8'h2c, 8'h89, 8'h24};
     
     begin
-        $display("Testing ALS\n");
+        $display("Testing Test Bits\n");
         for(integer i = 0; i < 3; i++)
         begin
             $display("i = %d", i);
@@ -134,6 +134,75 @@ task checkBitsOp;
         end
     end
         
+endtask
+
+task checkCompare;
+    input [7:0] testA;
+    input [7:0] testB;
+    static reg [8:0] tmp = {1'b0,testA} - {1'b0,testB};
+    
+    static bit [7:0] OPS [0:13] = {8'hc9, 8'hc5, 8'hd5, 8'hcd, 8'hdd, 8'hd9, 8'hc1, 8'hd1, 8'he0, 8'he4, 8'hec,
+                8'hc0, 8'hc4, 8'hcc};
+                
+    begin
+        $display("Testing Compare\n");
+        for(integer i = 0; i < 14; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            B = testB;
+            #5
+            assert( ZeroFlag == (tmp[7:0] == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( NegativeFlag == tmp[7]) else $fatal(1, "Bad Negative Flag\n");
+            assert( CarryOut == ((testA > testB) || (testA == testB))) else $fatal(1, "Bad Overflow Flag\n");
+        end
+    end
+    
+endtask
+
+task checkDecrement;
+    input [7:0] testA;
+    
+    static bit [7:0] OPS [0:5] = {8'hc6, 8'hd6, 8'hce, 8'hde, 8'hca, 8'h88};
+    
+    begin
+        $display("Testing Decrement\n");
+        for(integer i = 0; i < 6; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            #5
+            assert( out == (testA - 8'h01)) else $fatal(1, "Bad Decrement\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( NegativeFlag == out[7]) else $fatal(1, "Bad Negative Flag\n");
+        end
+    end
+    
+endtask
+
+task checkXOR;
+    input [7:0] testA;
+    input [7:0] testB;
+    
+    static bit [7:0] OPS [0:7] = {8'h49, 8'h45, 8'h55, 8'h4d, 8'h5d, 8'h59, 8'h41, 8'h51};
+    
+    begin
+        $display("Testing XOR\n");
+        for(integer i = 0; i < 8; i++)
+        begin
+            $display("i = %d", i);
+            OP = OPS[i];
+            A = testA;
+            B = testB;
+            #5
+            assert( out == (testA ^ testB)) else $fatal(1, "Bad XOR\n");
+            assert( ZeroFlag == (out == 8'h00)) else $fatal(1, "Bad Zero Flag\n");
+            assert( NegativeFlag == out[7]) else $fatal(1, "Bad Negative Flag\n");
+        end
+    end
+    
 endtask
 
 initial begin
@@ -162,6 +231,25 @@ initial begin
     checkBitsOp(8'hff, 8'h80);
     
     checkBitsOp(8'hff, 8'h70);
+    
+    //task calls to check compare
+    checkCompare(8'h00, 8'h01);
+    
+    checkCompare(8'h01, 8'h01);
+    
+    checkCompare(8'h01, 8'h00);
+    
+    //task calls to check decrement by 1
+    checkDecrement(8'h01);
+    
+    checkDecrement(8'h00);
+    
+    checkDecrement(8'h08);
+    
+    //task calls to check XOR
+    checkXOR(8'hAA, 8'h55);
+    
+    checkXOR(8'hAA, 8'hAA);
     
     $display("@@@Passed\n");
     $finish;
